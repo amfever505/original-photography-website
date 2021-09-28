@@ -1,0 +1,65 @@
+/*スクロールダウン全体の場所*/
+.scrolldown {
+  /*描画位置※位置は適宜調整してください*/
+  position: absolute;
+  bottom: 2%;
+  right: 50%;
+  z-index: 50;
+  /*矢印の動き1秒かけて永遠にループ*/
+  animation: arrowmove 1.5s ease-in-out infinite;
+}
+
+/*下からの距離が変化して全体が下→上→下に動く*/
+@keyframes arrowmove {
+  0% {
+    bottom: 2%;
+  }
+  50% {
+    bottom: 5%;
+  }
+  100% {
+    bottom: 2%;
+  }
+}
+
+/*Scrollテキストの描写*/
+.scrolldown span {
+  /*描画位置*/
+  position: absolute;
+  left: -20px;
+  bottom: 10px;
+  /*テキストの形状*/
+  color: #f5cac3;
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+  /*縦書き設定*/
+  -ms-writing-mode: tb-rl;
+  -webkit-writing-mode: vertical-rl;
+  writing-mode: vertical-rl;
+}
+
+/* 矢印の描写 */
+.scrolldown:before {
+  content: '';
+  /*描画位置*/
+  position: absolute;
+  bottom: 0;
+  right: -6px;
+  /*矢印の形状*/
+  width: 1px;
+  height: 20px;
+  background: #f5cac3;
+  transform: skewX(-31deg);
+}
+
+.scrolldown:after {
+  content: '';
+  /*描画位置*/
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  /*矢印の形状*/
+  width: 1px;
+  height: 50px;
+  background: #f5cac3;
+}
