@@ -64,8 +64,7 @@ $handwrite: 'Yellowtail', cursive;
 
 @mixin card {
   margin: 2rem 0;
-  width: 100%;
-  height: 70vh;
+  height: 100%;
   background: #fff;
   border-radius: 2rem;
   box-shadow: 2px 2px 6px gray;
@@ -567,7 +566,7 @@ header {
 }
 .section {
   .title {
-    height: $_1-5;
+    height: $_3-20;
   }
   .contents-area {
     height: 100% - $_1-5;
