@@ -19,8 +19,9 @@ $light-color: #f5cac3;
 }
 
 //break point
-$breakpoint_xs: 425px;
-$breakpoint_sm: 960px;
+$breakpoint_xs: 414px;
+$breakpoint_sp: 768px;
+$breakpoint_tl: 1024px;
 $breakpoint_md: 1440px;
 $breakpoint_lg: 1920px;
 
@@ -63,7 +64,6 @@ $handwrite: 'Yellowtail', cursive;
 //2行構成
 
 @mixin card {
-  margin: 2rem 0;
   height: 100%;
   background: #fff;
   border-radius: 2rem;
@@ -112,6 +112,10 @@ h1 {
     font-size: 3rem;
     margin-bottom: 2.5rem;
   }
+  @media screen and(max-width: $breakpoint_tl) {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+  }
   &:before {
     position: absolute;
     z-index: -1;
@@ -158,6 +162,10 @@ h2,
   @media screen and(max-width: $breakpoint_md) {
     font-size: 1.8rem;
     margin-bottom: 1.8rem;
+  }
+  @media screen and (max-width: $breakpoint_tl) {
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
   }
 }
 h3 {
@@ -214,6 +222,11 @@ header {
 .section {
   height: 100vh;
   padding: 4em 0 1.5rem 0;
+  @media screen and(max-width: $breakpoint_tl) {
+    padding: 3em 0 1.5rem 0;
+  }
+  display: flex;
+  flex-direction: column;
 }
 
 .container {
@@ -225,7 +238,8 @@ header {
     width: 87%;
   }
   @media screen and(max-width: $breakpoint_md) {
-    max-width: 90%;
+    width: 90%;
+    max-width: 1200px;
   }
 }
 
@@ -274,30 +288,85 @@ header {
   &-mg0 {
     margin: 0;
   }
+  .about & {
+    margin: 5rem 0 0 0;
+    @media screen and(max-width: $breakpoint_tl) and (min-height: 100vw) {
+      margin: 4rem 0 3rem 0;
+    }
+  }
   .flex-box_item--1-4 {
     width: 25%;
+    max-width: 400px;
     text-align: center;
+    .first & {
+      @media screen and (max-width: $breakpoint_tl) {
+        width: 50%;
+      }
+    }
     p.step {
       font-size: 4rem;
       color: $ttl-color;
+      @media screen and (max-width: $breakpoint_tl) {
+        font-size: 3rem;
+      }
     }
     img {
       width: 60%;
+      @media screen and (max-width: $breakpoint_tl) {
+        width: 55%;
+      }
     }
   }
   .flex-box_item--1-2 {
     width: 50%;
     max-width: 600px;
-    @media screen and(max-width: $breakpoint_md) {
+    // if 横
+    @media screen and(max-width: $breakpoint_md) and (max-height: 100vw) {
       max-width: 480px;
+    }
+    // if  < 1024 && 縦
+    @media screen and(max-width: $breakpoint_tl) and (min-height: 100vw) {
+      width: 90%;
     }
     @media screen and(max-width: $breakpoint_xs) {
       width: 90%;
+    }
+    .plan &,
+    .reserve & {
+      @media screen and(max-width: $breakpoint_tl) and (min-height: 100vw) {
+        max-width: 400px;
+      }
+    }
+    .contact & {
+      @media screen and(max-width: $breakpoint_tl) {
+        max-width: 400px;
+      }
+      @media screen and(max-width: $breakpoint_tl) and (min-height: 100vw) {
+        max-width: 540px;
+      }
+      @media screen and(max-width: $breakpoint_xs) {
+        width: 85%;
+      }
     }
   }
   .flex-box_item--1 {
     width: 100%;
     max-width: 1200px;
+  }
+  .flex-box_item--1-3 {
+    width: 33.3%;
+    max-width: 400px;
+    // if  < 1024 && 縦
+    @media screen and(max-width: $breakpoint_tl) and (min-height: 100vw) {
+      width: 100%;
+    }
+  }
+  .flex-box_item--2-3 {
+    width: 66.6%;
+    max-width: 800px;
+    @media screen and(max-width: $breakpoint_tl) and (min-height: 100vw) {
+      width: 100%;
+    }
   }
   .flex-box_item {
     &-pl {
@@ -311,18 +380,7 @@ header {
     }
   }
 }
-.card__flex-box {
-  @extend .flex-box;
-  height: 100%;
-  .main-img {
-    background-image: url(../img/reserve/DSC01287.jpg);
-    background-size: cover;
-    background-position: center;
-  }
-  .input-box {
-    padding: 2rem 3rem;
-  }
-}
+
 @mixin flexBox {
   display: flex;
   justify-content: center;
@@ -349,12 +407,23 @@ header {
     @media screen and(max-width: $breakpoint_md) {
       font-size: 1.4rem;
     }
+    @media screen and(max-width: $breakpoint_tl) {
+      font-size: 1.2rem;
+    }
   }
   &-1-3 .txt {
     width: $txtbox-width_1-3;
   }
   &-1-2 .txt {
     width: $txtbox-width_1-2;
+    @media screen and(min-height: 100vw) {
+      width: $_1-1;
+    }
+    &.main-btn {
+      @media screen and(max-width: $breakpoint_tl) {
+        width: $_1-1;
+      }
+    }
   }
   &-2-5 .txt {
     width: $txtbox-width_2-5;
@@ -364,6 +433,13 @@ header {
   }
   &-4-5 .txt {
     width: $txtbox-width_4-5;
+  }
+  .first & {
+    @media screen and(max-width: $breakpoint_tl) {
+      &-1-3 .txt {
+        width: $_2-3;
+      }
+    }
   }
   .txt_list {
     display: flex;
@@ -384,6 +460,12 @@ header {
     @media screen and(max-width: $breakpoint_md) {
       font-size: 1.2rem;
       margin: 1.5rem 0;
+    }
+    @media screen and(max-width: $breakpoint_tl) {
+      margin: 1rem 0;
+    }
+    @media screen and(max-width: $breakpoint_sp) {
+      font-size: 1rem;
     }
   }
 }
@@ -424,17 +506,31 @@ header {
 }
 //about
 .about .flex-box {
-  &:before {
+  &:before,
+  &:after {
     content: '';
     @extend .bg-center;
     display: block;
     position: absolute;
     z-index: -1;
-    top: 40%;
-    left: -50%;
     width: 25%;
-    padding-top: 30%;
+    padding-top: 25%;
+    background-size: 100% 100%;
+    @media screen and(max-width: $breakpoint_md) {
+      width: 23%;
+      padding-top: 26%;
+    }
+    @media screen and(max-width: $breakpoint_tl) {
+      display: none;
+    }
+  }
+  &:before {
+    top: 30%;
+    left: -50%;
     background-image: url(../img/about/parentheses-l.png);
+    @media screen and(max-width: $breakpoint_md) {
+      top: 25%;
+    }
   }
   &.active {
     &:before {
@@ -442,16 +538,12 @@ header {
     }
   }
   &:after {
-    content: '';
-    @extend .bg-center;
-    display: block;
-    position: absolute;
-    z-index: -1;
-    bottom: 45%;
+    bottom: 50%;
     right: -50%;
-    width: 25%;
-    padding-top: 30%;
     background-image: url(../img/about/parentheses-r.png);
+    @media screen and(max-width: $breakpoint_md) {
+      bottom: 60%;
+    }
   }
   &.active {
     &:after {
@@ -467,17 +559,26 @@ header {
     display: block;
     position: absolute;
     z-index: -1;
-    border-radius: 2rem;
+    border-radius: 1.5rem;
     right: 0;
     bottom: 0;
     width: 90%;
     height: 90%;
     background: $ttl-color;
+    @media screen and(max-width: $breakpoint_tl) {
+      right: 2rem;
+
+      width: 85%;
+      height: 85%;
+    }
   }
   img {
     margin-bottom: 2rem;
-    border-radius: 2rem;
+    border-radius: 1.5rem;
     width: 90%;
+    @media screen and(max-width: $breakpoint_tl) {
+      width: 85%;
+    }
   }
 }
 .btn-equipment {
@@ -489,6 +590,10 @@ header {
   display: inline-block;
   transition: all 0.3s;
   box-shadow: 2px 2px 6px gray;
+  @media screen and(max-width: $breakpoint_tl) {
+    font-size: 1.5rem;
+    padding: 1.6rem 5rem;
+  }
   &:hover {
     background-image: linear-gradient(#f5cac3 20%, #f28482);
   }
@@ -569,13 +674,12 @@ header {
     height: $_3-20;
   }
   .contents-area {
-    height: 100% - $_1-5;
+    height: 100% - $_3-20;
   }
 }
 
 //works
 .works {
-  display: flex;
   .title {
     height: $_3-20;
   }
@@ -600,14 +704,21 @@ header {
           flex-wrap: wrap;
           height: 100%;
           width: 25rem;
-          justify-content: space-between;
+          justify-content: flex-start;
+          @media screen and(max-width: $breakpoint_tl) {
+            width: 23rem;
+          }
           img {
-            margin: 0 3rem 0 0;
+            // margin: 0 3rem 0 0;
           }
           a .img-box,
           .img-box {
             margin: 0 3rem 0 0;
             padding-top: $_2-3;
+            margin-bottom: 4.8%;
+            @media screen and(max-width: $breakpoint_tl) {
+              margin-right: 2rem;
+            }
           }
         }
       }
@@ -615,10 +726,12 @@ header {
   }
 }
 .plan {
-  display: flex;
   padding-bottom: 0;
   .title {
     height: $_1-5;
+    @media screen and(max-width: $breakpoint_tl) {
+      height: $_3-20;
+    }
     .tag-group {
       display: flex;
       position: absolute;
@@ -644,7 +757,7 @@ header {
     }
   }
   .contents-area {
-    height: 100% - $_1-5;
+    height: 100% - $_3-20;
     background: #fff;
 
     .content {
@@ -664,9 +777,18 @@ header {
           flex-wrap: nowrap;
           height: 100%;
           width: 20rem;
+          @media screen and(max-width: $breakpoint_tl) {
+            width: 18rem;
+          }
           img {
             margin: 0 5rem 0 0;
             height: fit-content;
+            @media screen and(max-width: $breakpoint_md) {
+              margin: 0 4rem 0 0;
+            }
+            @media screen and(max-width: $breakpoint_tl) {
+              margin: 0 2rem 0 0;
+            }
             &:nth-child(2n) {
               margin-top: auto;
             }
@@ -681,52 +803,83 @@ header {
   }
 }
 // reserve
-.card {
-  @include card;
+.reserve {
+  .contents-area {
+    padding-top: 2rem;
+    .card {
+      @include card;
+    }
+  }
 }
+
 // form
-.input-box {
-  display: flex;
-  flex-wrap: wrap;
-  align-content: space-between;
-  font-size: 1.5rem;
-
-  label,
-  input,
-  textarea {
-    margin-bottom: 1.8rem;
-  }
-  label {
-    width: 40%;
-    span {
-      color: $main-color;
+.card__flex-box {
+  @extend .flex-box;
+  height: 100%;
+  .main-img {
+    background-image: url(../img/reserve/DSC01287.jpg);
+    background-size: cover;
+    background-position: center;
+    @media screen and(max-width: $breakpoint_tl) and (min-height: 100vw) {
+      max-width: none;
     }
   }
-  > textarea,
-  > input {
-    resize: none;
-    width: 60%;
-    padding: 8px;
-    border-radius: 8px;
-    border: 2px solid $second-color;
-    &:focus {
-      border: 2px solid $ttl-color;
-      // z-index: 10;
-      outline: 0;
+  .input-box {
+    padding: 2rem 3rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-between;
+    font-size: 1.5rem;
+    @media screen and(max-width: $breakpoint_tl) {
+      font-size: 1.3rem;
     }
-  }
-  textarea {
-    height: 30%;
-  }
-  .btn-submit {
-    width: 100%;
-    text-align: center;
-  }
-  .button {
+    label,
+    input,
+    textarea {
+      margin-bottom: 1.8rem;
+      @media screen and(max-width: $breakpoint_tl) {
+        margin-bottom: 1rem;
+      }
+    }
+    label {
+      width: 40%;
+      span {
+        color: $main-color;
+      }
+    }
+    > textarea,
+    > input {
+      resize: none;
+      width: 60%;
+      padding: 8px;
+      border-radius: 8px;
+      border: 2px solid $second-color;
+      @media screen and(max-width: $breakpoint_tl) and (min-height: 100vw) {
+        padding: 6px;
+      }
+      &:focus {
+        border: 2px solid $ttl-color;
+        // z-index: 10;
+        outline: 0;
+      }
+    }
+    textarea {
+      height: 30%;
+    }
+    .btn-submit {
+      width: 100%;
+      text-align: center;
+    }
+    @media screen and(max-width: $breakpoint_tl) {
+      padding: 1.5rem 1.5rem;
+    }
   }
 }
-//contact
 
+//contact
+.contact {
+  padding-bottom: 0;
+}
 iframe {
   height: 40vh;
   border-radius: 2rem;
@@ -753,6 +906,14 @@ footer {
 //ナビスタイル
 #fp-nav {
   z-index: 5;
+}
+#fp-nav.fp-left {
+  @media screen and(max-width: $breakpoint_md) {
+    left: 12px;
+  }
+  @media screen and(max-width: $breakpoint_md) {
+    left: 8px;
+  }
 }
 #fp-nav ul li,
 .fp-slidesNav ul li {
@@ -800,6 +961,12 @@ footer {
 .flex-col {
   flex-direction: column;
 }
+.flex-wrap {
+  flex-wrap: wrap;
+}
 .flex-sa {
   justify-content: space-around;
+}
+.felx-ct {
+  justify-content: center;
 }
