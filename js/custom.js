@@ -186,3 +186,10 @@ jQuery.prototype.mousedragscrollable = function () {
     });
 };
 $('.sample').mousedragscrollable();
+
+$('#send').click(function () {
+  let data = $('#name')[0].value;
+  window.alert('送信できました!');
+  data = '';
+  console.log(data);
+});

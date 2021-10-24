@@ -835,6 +835,7 @@ header {
     }
     label,
     input,
+    select,
     textarea {
       margin-bottom: 1.8rem;
       @media screen and(max-width: $breakpoint_tl) {
@@ -847,8 +848,10 @@ header {
         color: $main-color;
       }
     }
+    > select,
     > textarea,
     > input {
+      color: $font-color;
       resize: none;
       width: 60%;
       padding: 8px;

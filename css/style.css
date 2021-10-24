@@ -635,28 +635,34 @@ header {
         font-size: 1.3rem; } }
     .card__flex-box .input-box label,
     .card__flex-box .input-box input,
+    .card__flex-box .input-box select,
     .card__flex-box .input-box textarea {
       margin-bottom: 1.8rem; }
       @media screen and (max-width: 1024px) {
         .card__flex-box .input-box label,
         .card__flex-box .input-box input,
+        .card__flex-box .input-box select,
         .card__flex-box .input-box textarea {
           margin-bottom: 1rem; } }
     .card__flex-box .input-box label {
       width: 40%; }
       .card__flex-box .input-box label span {
         color: #f28482; }
+    .card__flex-box .input-box > select,
     .card__flex-box .input-box > textarea,
     .card__flex-box .input-box > input {
+      color: #9d8189;
       resize: none;
       width: 60%;
       padding: 8px;
       border-radius: 8px;
       border: 2px solid #84a59d; }
       @media screen and (max-width: 1024px) and (min-height: 100vw) {
+        .card__flex-box .input-box > select,
         .card__flex-box .input-box > textarea,
         .card__flex-box .input-box > input {
           padding: 6px; } }
+      .card__flex-box .input-box > select:focus,
       .card__flex-box .input-box > textarea:focus,
       .card__flex-box .input-box > input:focus {
         border: 2px solid #f6bd60;
