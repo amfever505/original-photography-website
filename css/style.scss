@@ -1,5 +1,6 @@
 @charset 'utf-8';
 @import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@300;400;500;700&family=Yellowtail&family=Yusei+Magic&display=swap');
+// コンパイル　sass css/style.scss css/style.css
 
 $main-color: #f28482;
 $second-color: #84a59d;
@@ -355,7 +356,9 @@ header {
   }
   .flex-box_item--1-3 {
     width: 33.3%;
-    max-width: 400px;
+    @media screen and(max-width: $breakpoint_md) {
+      max-width: 400px;
+    }
     // if  < 1024 && 縦
     @media screen and(max-width: $breakpoint_tl) and (min-height: 100vw) {
       width: 100%;
@@ -363,7 +366,9 @@ header {
   }
   .flex-box_item--2-3 {
     width: 66.6%;
-    max-width: 800px;
+    @media screen and(max-width: $breakpoint_md) {
+      max-width: 800px;
+    }
     @media screen and(max-width: $breakpoint_tl) and (min-height: 100vw) {
       width: 100%;
     }
